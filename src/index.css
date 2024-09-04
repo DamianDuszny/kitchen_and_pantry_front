@@ -50,7 +50,7 @@ input:focus {
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
-    background: #5b08a7;
+    background: #0c799a;
 }
 
 .btn-block {

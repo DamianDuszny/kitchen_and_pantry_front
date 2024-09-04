@@ -35,7 +35,7 @@ const getMenuElementWithSubElements = (name, elements) => {
             {name}
         </Nav.Link>
         {activeSubmenu === name && (
-            <Nav className="flex-column ms-4" id="submenu">
+            <Nav className="flex-column ms-4" id={`${name}-submenu`}>
                 {elements}
             </Nav>
         )}

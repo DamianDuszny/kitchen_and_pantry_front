@@ -54,32 +54,25 @@ export default function PantryList() {
                         }
                     </ul>
                 </nav>
-                <div id="no-more-tables">
-                    <table className="col-md-12 table-bordered table-striped table-condensed cf">
-                        <thead className="cf">
-                        <tr>
-                            <th>Nazwa</th>
-                            <th>Ilość</th>
-                            <th className="numeric">Data przydatności</th>
-                            <th className="numeric">Masa netto</th>
-                            <th className="numeric">Cena</th>
-                            <th className="numeric">Masa jednostki</th>
-                        </tr>
-                        </thead>
-                        <tbody>
                         {response.data.map(product => (
-                            <tr key={product.id} className="grid-row">
-                                <td data-title="Nazwa">{product.description?.name}</td>
-                                <td data-title="Ilość">{product.amount}</td>
-                                <td data-title="Data przydatności">{product.expiration_date}</td>
-                                <td data-title="Masa netto">{product.net_weight}</td>
-                                <td data-title="Cena">{product.price}</td>
-                                <td data-title="Masa jednostki">{product.unit_weight}</td>
-                            </tr>
+                            <div>
+                                <p>
+                                    <a className="btn btn-primary mb-1 btn-block" data-bs-toggle="collapse" href={`#product${product.id}`} role="button"
+                                       aria-expanded="false" aria-controls={`#product${product.id}`}>
+                                        {product.description?.name}
+                                    </a>
+                                </p>
+                                <div className="collapse" id={`product${product.id}`}>
+                                    <div className="card card-body">
+                                        <p>Ilość: {product.amount}</p>
+                                        <p>Data przydatności: {product.expiration_date}</p>
+                                        <p>Masa netto: {product.net_weight}</p>
+                                        <p>Cena : {product.price}</p>
+                                        <p>Masa jednostki: {product.unit_weight}</p>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
-                        </tbody>
-                    </table>
-                </div>
             </>
         ) : (
             <div className="loader"></div>
