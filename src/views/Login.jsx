@@ -1,11 +1,11 @@
 import {Link} from "react-router-dom";
 import axiosClient from "../axios-client.js";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
 
 export default function Login() {
     const {setToken} = useStateContext();
-
+    const [errors, setErrors] = useState(null);
     const emailRef = useRef();
     const passwordRef = useRef();
 
@@ -17,13 +17,22 @@ export default function Login() {
             .then((data) => {
                 setToken(data.data.token);
             })
-            .catch()
+            .catch(err => {
+                const response = err.response;
+                if (response && response.status === 401) {
+                    setErrors(response.data.message);
+                    window.scrollTo(0, 0);
+                }
+            })
         ev.preventDefault();
     }
 
     return (
         <div className="login-signup-form animated fadeInDown">
             <div className="form">
+                {errors && <div className="alert alert-warning">
+                    {errors}
+                </div>}
                 <form onSubmit={onSubmit}>
                     <h1 className="title">Logowanie</h1>
                     <input ref={emailRef} type="email" placeholder="email"/>

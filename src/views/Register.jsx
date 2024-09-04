@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import axiosClient from "../axios-client.js";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
 
 export default function Register() {
-
+    const [errors, setErrors] = useState(null);
     const nameRef = useRef();
     const lastNameRef = useRef();
     const emailRef = useRef();
@@ -28,8 +28,9 @@ export default function Register() {
             })
             .catch(err => {
                 const response = err.response;
-                if(response && response.status === 422) {
-                    console.log(response.data.errors);
+                if (response && response.status === 422) {
+                    setErrors(response.data.message);
+                    window.scrollTo(0, 0);
                 }
             })
         ;
@@ -39,6 +40,9 @@ export default function Register() {
     return (
         <div className="login-signup-form animated fadeInDown">
             <div className="form">
+                {errors && <div className="alert alert-warning">
+                    {errors}
+                </div>}
                 <form onSubmit={onSubmit}>
                     <h1 className="title">Rejestracja</h1>
                     <input ref={emailRef} type="email" placeholder="email"/>
