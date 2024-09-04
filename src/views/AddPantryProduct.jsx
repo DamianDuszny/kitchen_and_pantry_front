@@ -11,6 +11,7 @@ export default function AddPantryProduct() {
         {form_name: "net_weight", visible_name: "Masa netto całkowita"},
         {form_name: "unit_weight", visible_name: "Masa netto jednostki"},
         {form_name: "img", visible_name: "Zdjęcie produktu"},
+        {form_name: "expiration_date", visible_name: "Data przydatności", type: 'date'},
     ];
 
     function addProduct(ev) {
@@ -41,7 +42,7 @@ export default function AddPantryProduct() {
                     {productData.map((data, index) => (
                         <div key={index}>
                             <label htmlFor={data.form_name}>{data.visible_name}</label>
-                            <input type="text" id={data.form_name} name={data.form_name}/>
+                            <input type={data.type ? data.type : 'text'} id={data.form_name} name={data.form_name}/>
                         </div>
                     ))}
                     <button className={"btn btn-primary"} id="submit_button">Dodaj produkt</button>
