@@ -11,17 +11,6 @@ export default function Pantry() {
 
     return (
         <div>
-            <div className="nav nav-tabs" id={"nav-tab"} role={"tablist"}>
-                {links.map(link => (
-                    <Link
-                        key={link.to}
-                        className={`nav-item nav-link ${location.pathname === link.to ? 'active' : ''}`}
-                        to={link.to}
-                    >
-                        {link.label}
-                    </Link>
-                ))}
-            </div>
             <span>
                 <Outlet/>
             </span>

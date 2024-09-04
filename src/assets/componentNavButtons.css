@@ -23,3 +23,9 @@
     text-decoration: none;
     color: black;
 }
+
+.nav-link.active {
+    font-weight: bold;
+    color: #007bff; /* Podświetlenie linku */
+    background-color: #faf8f8;
+}
