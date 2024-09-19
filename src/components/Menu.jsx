@@ -21,7 +21,7 @@ const handleLinkClick = () => {
 };
 
 const getLink = (path, name) => {
-    return  <Link className={`nav-link ${isActive(path) ? 'active' : ''}`} onClick={handleLinkClick} to={path}>{name}</Link>;
+    return  <Link className={`nav-link ${isActive(path) ? 'active' : ''}`} key={path} onClick={handleLinkClick} to={path}>{name}</Link>;
 }
 
 const getMenuElementWithSubElements = (name, elements) => {
