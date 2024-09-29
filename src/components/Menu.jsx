@@ -3,7 +3,7 @@ import { Offcanvas, Nav, Navbar, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link, useLocation} from "react-router-dom";
 export default function Menu() {
-const [showMenu, setShowMenu] = useState(false);
+const [showMenu, setShowMenu] = useState(true);
 const [activeSubmenu, setActiveSubmenu] = useState(null);
 
 const handleClose = () => setShowMenu(false);
@@ -12,11 +12,10 @@ const handleShow = () => setShowMenu(true);
 const toggleSubmenu = (submenu) => {
     setActiveSubmenu(activeSubmenu === submenu ? null : submenu);
 };
-const location = useLocation(); // Hook do pobrania aktualnej ścieżki URL
+const location = useLocation();
 
 const isActive = (path) => location.pathname === path;
 const handleLinkClick = () => {
-    // Po kliknięciu linku menu się zamyka
     handleClose();
 };
 
@@ -44,13 +43,11 @@ const getMenuElementWithSubElements = (name, elements) => {
 
 return (
     <>
-        {/* Przycisk hamburgera */}
-        <Navbar expand="lg">
+        <Navbar expand={false}>
             <Container fluid>
                 <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
             </Container>
         </Navbar>
-        {/* Menu wysuwane (Offcanvas) */}
         <Offcanvas show={showMenu} onHide={handleClose} placement="start">
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Menu</Offcanvas.Title>
