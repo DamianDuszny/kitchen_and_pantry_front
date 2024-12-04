@@ -25,9 +25,3 @@ export interface products_ean {
     ean: string;
     id: number;
 }
-
-export interface response {
-    message: string;
-    success: boolean;
-    errors: string[];
-}

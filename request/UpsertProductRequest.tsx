@@ -1,5 +1,6 @@
 import axiosClient from "../src/axios-client.js";
-import {response, productStock} from "../domain/dto";
+import {productStock} from "../domain/dto";
+import {response} from "../domain/response";
 
 export default async function upsertProductRequest(productStock: productStock | FormData): Promise<response> {
 
