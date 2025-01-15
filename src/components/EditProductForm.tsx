@@ -50,10 +50,15 @@ export default function EditProductForm({product}: { product: productStock | nul
                     collapsedHTML: (
                         <div>
                             <label htmlFor="name">Nazwa produktu</label>
-                            <input type="text" id="name" defaultValue={product?.description?.name} name="name" />
+                            <input type="text" id="name" defaultValue={product?.description?.name} name="name"/>
 
                             <label htmlFor="ean">Ean</label>
-                            <input type="text" id="ean" defaultValue={product?.products_ean?.ean} name="ean" />
+                            <input type="text" id="ean" defaultValue={product?.products_ean?.ean} name="ean"/>
+                            {
+                                product?.id && (
+                                 <input type="hidden" id="stock_id" defaultValue={product?.id} name="pantry_stock_id"/>
+                                )
+                            }
                         </div>
                     )
                 })}
@@ -63,14 +68,16 @@ export default function EditProductForm({product}: { product: productStock | nul
                     collapsedHTML: (
                         <div>
                             <label htmlFor={'amount'}>Ilość</label>
-                            <input type={'text'} id={'amount'} value={product?.amount} name={'amount'}/>
+                            <input type={'text'} id={'amount'} defaultValue={product?.amount} name={'amount'}/>
 
 
                             <label htmlFor={'net_weight'}>Masa całkowita</label>
-                            <input type={'text'} id={'net_weight'} value={product?.net_weight} name={'net_weight'}/>
+                            <input type={'text'} id={'net_weight'} defaultValue={product?.net_weight}
+                                   name={'net_weight'}/>
 
                             <label htmlFor={'unit_weight'}>Masa netto</label>
-                            <input type={'text'} id={'unit_weight'} value={product?.unit_weight} name={'unit_weight'}/>
+                            <input type={'text'} id={'unit_weight'} defaultValue={product?.unit_weight}
+                                   name={'unit_weight'}/>
                         </div>
                     )
                 })}
@@ -80,9 +87,10 @@ export default function EditProductForm({product}: { product: productStock | nul
                     collapsedHTML: (
                         <div>
                             <label htmlFor={'expiration_date'}>Data ważności</label>
-                            <input type={'date'} id={'expiration_date'} value={product?.expiration_date} name={'expiration_date'}/>
+                            <input type={'date'} id={'expiration_date'} defaultValue={product?.expiration_date}
+                                   name={'expiration_date'}/>
                             <label htmlFor={'price'}>Cena</label>
-                            <input type={'text'} id={'price'} value={product?.price} name={'price'}/>
+                            <input type={'number'} id={'price'} defaultValue={product?.price} name={'price'}/>
                         </div>
                     )
                 })}
@@ -92,14 +100,16 @@ export default function EditProductForm({product}: { product: productStock | nul
                     collapsedHTML: (
                         <div>
                             <label htmlFor={'company'}>Marka</label>
-                            <input type={'text'} id={'company'} value={product?.description?.company} name={'company'}/>
+                            <input type={'text'} id={'company'} defaultValue={product?.description?.company}
+                                   name={'company'}/>
 
                             <label htmlFor={'img_url'}>Zdjęcie</label>
-                            <input disabled type={'text'} id={'img_url'} value={product?.description?.img_url} name={'img_url'}/>
+                            <input disabled type={'text'} id={'img_url'} defaultValue={product?.description?.img_url}
+                                   name={'img_url'}/>
                         </div>
                     )
                 })}
-                <button className={"btn btn-primary"} id="submit_button">Dodaj produkt</button>
+                <button className={"btn btn-primary"} id="submit_button">{product ? 'Zapisz' : 'Dodaj produkt'}</button>
             </form>
         </div>
     </>

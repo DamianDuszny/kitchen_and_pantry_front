@@ -4,7 +4,7 @@ import {response} from "../domain/response";
 
 export default async function upsertProductRequest(productStock: productStock | FormData): Promise<response> {
 
-    const data = await axiosClient.post('/products', productStock)
+    const data = await axiosClient.post('/pantry/4/products', productStock)
         .catch(err => {
             return err.response;
         });

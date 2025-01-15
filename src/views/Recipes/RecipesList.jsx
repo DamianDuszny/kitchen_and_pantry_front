@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axiosClient from "../../axios-client.js";
-import '../../assets/noMoreTables.css';
 import '../../assets/loading.css';
 import { useParams, Link } from 'react-router-dom';
 

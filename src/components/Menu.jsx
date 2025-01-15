@@ -3,7 +3,7 @@ import { Offcanvas, Nav, Navbar, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link, useLocation} from "react-router-dom";
 export default function Menu() {
-const [showMenu, setShowMenu] = useState(true);
+const [showMenu, setShowMenu] = useState(false);
 const [activeSubmenu, setActiveSubmenu] = useState(null);
 
 const handleClose = () => setShowMenu(false);
@@ -58,10 +58,11 @@ return (
                     {getLink('/przepisy', 'przepisy')}
                     {getLink('/grupy', 'grupy')}
                     {getMenuElementWithSubElements(
-                        'Spiżarnia',
+                        'Spriżarnia',
                             [
-                                getLink('/spizarnia/lista/', 'Produkty'),
-                            getLink('/spizarnia/dodaj-produkt', 'Dodaj produkt')
+                                getLink('/produkty/lista/', 'Produkty'),
+                                getLink('/produkty/dodaj-produkt', 'Dodaj produkt'),
+                                getLink('/spizarnia/dodaj', 'Dodaj spiżarnie')
                             ]
                     )}
                     <Nav.Link href="#kontakt" onClick={handleLinkClick}>Kontakt</Nav.Link>

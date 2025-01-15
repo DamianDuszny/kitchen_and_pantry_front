@@ -7,10 +7,12 @@ import LoggedUserLayout from "./components/LoggedUserLayout.jsx";
 import GuestLayout from "./components/GuestLayout.jsx";
 import Recipes from "./views/Recipes.jsx";
 import Pantry from "./views/Pantry.jsx";
-import PantryList from "./views/PantryList.jsx";
+import Products from "./views/Products.jsx";
+import PantriesStockList from "./views/PantriesStockList.tsx";
 import AddPantryProduct from "./views/AddPantryProduct.tsx";
 import AddRecipe from "./views/Recipes/AddRecipe.jsx";
 import RecipesList from "./views/Recipes/RecipesList.jsx";
+import CreatePantry from "./views/Pantry/CreatePantry.tsx";
 
 const router = createBrowserRouter([
     {
@@ -40,13 +42,27 @@ const router = createBrowserRouter([
                 element: <Pantry />,
                 children: [
                     {
-                        path:'/spizarnia/lista/:page?',
-                        element: <PantryList />
+                        path:'/spizarnia/dodaj/',
+                        element: <CreatePantry />
+                    }
+                ]
+            },
+            {
+                path: '/produkty',
+                element: <Products />,
+                children: [
+                    {
+                        path:'/produkty/lista/:page?',
+                        element: <PantriesStockList />
                     },
                     {
-                        path:'/spizarnia/dodaj-produkt',
+                        path:'/produkty/dodaj-produkt',
                         element: <AddPantryProduct />
                     },
+                    {
+                        path:'/produkty/:id',
+                        element: <AddPantryProduct />
+                    }
                 ]
             },
             {

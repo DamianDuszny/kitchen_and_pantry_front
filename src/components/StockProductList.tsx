@@ -28,6 +28,7 @@ export default function StockProductList({ stock, returnProductCallback }: Stock
                                 <p>Cena : {product.price}</p>
                                 <p>Masa jednostki: {product.unit_weight}</p>
                                 <p>Ean: {product.products_ean.ean}</p>
+                                <p>Spiżarnia: {product.pantry.name}</p>
                                 {returnProductCallback ? <button className={"btn btn-primary mb-1 btn-block"} onClick={() => returnProductCallback(product)}>Wybierz</button> : ''}
                             </div>
                         </div>
