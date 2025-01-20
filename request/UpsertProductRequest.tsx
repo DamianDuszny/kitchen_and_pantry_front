@@ -6,7 +6,7 @@ export default async function upsertProductRequest(productStock: productStock | 
 
     const data = await axiosClient.post('/pantry/4/products', productStock)
         .catch(err => {
-            return err.response;
+            return err.response;//@todo czy na pewno zadziała dobrze?
         });
     const resp: response = {
         message: '',

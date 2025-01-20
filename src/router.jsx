@@ -13,6 +13,9 @@ import AddPantryProduct from "./views/AddPantryProduct.tsx";
 import AddRecipe from "./views/Recipes/AddRecipe.jsx";
 import RecipesList from "./views/Recipes/RecipesList.jsx";
 import CreatePantry from "./views/Pantry/CreatePantry.tsx";
+import ResetPasswordForm from "./views/ResetPasswordForm.jsx";
+import SendPasswordResetLinkForm from "./views/SendPasswordResetLinkForm.tsx";
+
 
 const router = createBrowserRouter([
     {
@@ -82,6 +85,14 @@ const router = createBrowserRouter([
             {
                 path: '/rejestracja',
                 element: <Register />
+            },
+            {
+                path: '/ustaw-nowe-haslo',
+                element: <ResetPasswordForm />
+            },
+            {
+                path: '/reset-hasla',
+                element: <SendPasswordResetLinkForm />
             }
         ],
     },

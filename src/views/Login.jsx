@@ -41,6 +41,9 @@ export default function Login() {
                     <p className="message">
                         Nie masz konta? <Link to="/rejestracja">Utwórz konto</Link>
                     </p>
+                    <p className="message">
+                        Nie pamiętasz hasła? <Link to="/reset-hasla">Zresetuj hasło</Link>
+                    </p>
                 </form>
             </div>
         </div>
