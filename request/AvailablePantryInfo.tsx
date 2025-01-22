@@ -1,6 +1,5 @@
 import axiosClient from "../src/axios-client.js";
-import {response} from "../domain/response";
-import {pantry, user} from "../domain/pantry";
+import {pantry} from "../domain/pantry";
 export default async function getAvailablePantryInfo(): Promise<pantry[]|null> {
     try {
         const { data } = await axiosClient.get(`/pantry/list`);

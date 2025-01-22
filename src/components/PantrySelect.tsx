@@ -3,7 +3,12 @@ import '../assets/loading.css';
 import { pantry } from "../../domain/pantry.js";
 import getAvailablePantryInfo from "../../request/AvailablePantryInfo";
 
-export default function PantrySelect() {
+export interface pantrySelectPros {
+    pantrySelectCallback: ((arg: number) => void) | null;
+    selectedPantryId: number
+}
+
+export function PantrySelect({pantrySelectCallback, selectedPantryId} : pantrySelectPros) {
     const [pantries, setPantries] = useState<pantry[] | null>(null);
     const [isLoading, setIsLoading] = useState(true); // Nowy stan
 
@@ -20,21 +25,30 @@ export default function PantrySelect() {
             }
         };
 
-        fetchData(); // Wywołanie funkcji fetchData
-    }, []); // Pusta tablica zależności, efekt uruchomi się tylko raz
+        fetchData();
+    }, []);
 
     if (isLoading) {
         return (
-            <div className="loader"></div> // Wskaźnik ładowania
+            <div className="loader"></div>
         );
     }
 
     return (
-        <select className={"form-select mb-2"}>
-            <option key='all' selected={true}>Wszystkie</option>
-            {pantries?.map((pantry) => (
-                <option key={pantry.id}>{pantry.name}</option>
-            ))}
-        </select>
+        <>
+            <label htmlFor={'pantrySelect'}>
+                Wybierz spiżarnie:
+            </label>
+            <select
+                className={"form-select mb-2"}
+                onChange={(e) => pantrySelectCallback(Number(e.target.value))}
+                id={'pantrySelect'}
+            >
+                <option value="0" key="0" selected={selectedPantryId == 0}>Wszystkie</option>
+                {pantries?.map((pantry) => (
+                    <option value={pantry.id} key={pantry.id} selected={selectedPantryId == pantry.id}>{pantry.name}</option>
+                ))}
+            </select>
+        </>
     );
 }

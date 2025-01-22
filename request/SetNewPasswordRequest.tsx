@@ -1,7 +1,7 @@
 import axiosClient from "../src/axios-client.js";
-import {response} from "../domain/response";
-export default async function SetNewPasswordRequest(payLoad: Object): Promise<response> {
-    let result: response = {
+import {requestResponse} from "../domain/requestResponse";
+export default async function SetNewPasswordRequest(payLoad: Object): Promise<requestResponse> {
+    let result: requestResponse = {
         success: false,
         message: '',
         errors: [],

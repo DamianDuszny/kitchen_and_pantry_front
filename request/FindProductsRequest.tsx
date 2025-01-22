@@ -1,9 +1,9 @@
 import axiosClient from "../src/axios-client.js";
 import { description, products_ean, productStock, pantry } from "../domain/dto";
 
-export default async function findProductsRequest(identifier: string | null, page?: number): Promise<productStock[] | null> {
+export default async function findProductsRequest(identifier: string | null, page?: number, pantry: number = 0): Promise<productStock[] | null> {
     try {
-        let url = `/pantry/0/products/${identifier}`;//@todo find pantry
+        let url = `/pantry/${pantry}/products/${identifier}`;
         if(page) {
             url += `?page=${page}`;
         }

@@ -1,14 +1,14 @@
 import axiosClient from "../src/axios-client.js";
 import {productStock} from "../domain/dto";
-import {response} from "../domain/response";
+import {requestResponse} from "../domain/requestResponse";
 
-export default async function upsertProductRequest(productStock: productStock | FormData): Promise<response> {
+export default async function upsertProductRequest(productStock: productStock | FormData): Promise<requestResponse> {
 
     const data = await axiosClient.post('/pantry/4/products', productStock)
         .catch(err => {
             return err.response;//@todo czy na pewno zadziała dobrze?
         });
-    const resp: response = {
+    const resp: requestResponse = {
         message: '',
         errors: [],
         success: true,

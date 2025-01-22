@@ -119,14 +119,6 @@ table > tbody > tr > td {
     margin-top: 0.5rem;
 }
 
-.alert {
-    padding: 1rem;
-    background-color: #ff4040;
-    color: white;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-}
-
 .notification {
     position: fixed;
     right: 1rem;

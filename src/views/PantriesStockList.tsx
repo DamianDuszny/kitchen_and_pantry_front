@@ -4,20 +4,20 @@ import StockProductList from '../components/StockProductList';
 import findProductsRequest from '../../request/FindProductsRequest';
 import { productStock } from "../../domain/dto.js";
 import EditProductForm from "../components/EditProductForm";
-import PantrySelect from "../components/PantrySelect";
-import FindProducts from "../components/FindProducts";
+import { PantrySelect} from "../components/PantrySelect";
 
 export default function PantriesStockList() {
-    const [stockData, setStockData] = useState([]);
+    const [stockData, setStockData] = useState<productStock[]|[]>([]);
     const [productsStock, setProductsStock] = useState<productStock | null>(null);
-    const [isLoading, setIsLoading] = useState(true); // Nowy stan
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [pantryId, setPantryId] = useState<number>(0);
     let page = 1;
 
     useEffect(() => {
         const fetchData = async (page) => {
             setIsLoading(true); // Rozpoczęcie ładowania
             try {
-                const result = await findProductsRequest('', page);
+                const result = await findProductsRequest('', page, pantryId);
                 setStockData(result);
             } catch (error) {
                 console.error('Error fetching stock data:', error);
@@ -27,7 +27,7 @@ export default function PantriesStockList() {
         };
 
         fetchData(page);
-    }, [page]);
+    }, [page, pantryId]);
 
     if (isLoading) {
         return (
@@ -52,7 +52,7 @@ export default function PantriesStockList() {
         </>
     ) : (
         <div>
-            <PantrySelect />
+            <PantrySelect pantrySelectCallback={setPantryId} selectedPantryId={pantryId}/>
             {StockProductList({ stock: stockData, returnProductCallback: setProductsStock })}
         </div>
     );

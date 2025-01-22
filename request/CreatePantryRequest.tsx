@@ -1,16 +1,21 @@
 import axiosClient from "../src/axios-client.js";
-import {pantry, user} from "../domain/pantry";
-export default async function createPantryRequest(pantry: FormData): Promise<pantry|null> {
+import {requestResponse} from "../domain/requestResponse";
+
+export default async function createPantryRequest(pantry: FormData): Promise<requestResponse | null> {
     try {
-        const { data } = await axiosClient.post(
+        const {data} = await axiosClient.post(
             `/pantry/create`,
             pantry
         );
         return {
-            id: data.id,
-            description: data.description,
-            name: data.name,
-            users: []
+            message: 'Udało się utworzyć spiżarnie!',
+            success: true,
+            objectData: {
+                id: data.id,
+                description: data.description,
+                name: data.name,
+                users: []
+            }
         };
 
     } catch (err) {

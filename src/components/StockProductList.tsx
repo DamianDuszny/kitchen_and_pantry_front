@@ -37,7 +37,6 @@ export default function StockProductList({ stock, returnProductCallback }: Stock
             </>
         ) : (
             ''
-            // <div className="loader"></div>
         )
     );
 }
